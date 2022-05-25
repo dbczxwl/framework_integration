@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- 命名空间说明 - beans:定义一个包含bean的范围; xsi:通过schemaLocation属性定位各命名空间的规约xsd文件位置; 
+		context:用与引入外部文件,properties,通过注解上面的bean等 ; aop/tx:配合来完成声明式事务 -->
+
+	<!-- 开启包扫描 -->
+	<context:component-scan base-package="com.branch.don">
+		<!-- 在spring配置文件的包扫描配置中忽略对Controller的扫描，Controller的扫描交给Spring MVC -->
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+</beans>
