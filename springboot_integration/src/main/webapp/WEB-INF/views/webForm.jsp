@@ -4,6 +4,12 @@
 <head>
 <title>Insert title here</title>
 <script type="text/javascript">
+	function showUseParam()
+	{
+	    document.commitForm.action="showBookNameUseRequestParam";
+	    document.commitForm.submit();
+	}
+
     function showBookName()
     {
 	    document.dynamicForm.action="showBookName";
@@ -19,9 +25,10 @@
 </head>
 <body>
 	<h1>Form transfer model</h1>
-	<form action="commitForm" method="GET">
+	<form  name="commitForm" action="commitForm" method="GET">
 		<input type="text" name="bookName" placeholder="name is ..."/>
 		<input type="submit" />
+		<input type="button" name="showParam" value="RequestParam传参" onClick="showUseParam()"/>
 	</form>
 
 	<form name="dynamicForm" action="">

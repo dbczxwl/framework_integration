@@ -8,18 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.branch.don.practice_for_springmvc_hibernate.entity.Customer;
 
 // Create Controller class
 @Controller
 public class InfoController {
-	// Defined Controller method
-	// Add RequestMapping
+	// Defined Controller method, and Add RequestMapping
 	@RequestMapping("/")
 	public String showInfo() {
 		// Return View Name
-		// Develop View Page
 		return "menu";
 	}
 
@@ -33,6 +32,12 @@ public class InfoController {
 		return "showParams";
 	}
 
+	@RequestMapping("/showBookNameUseRequestParam")
+	public String showBookNameUseRequestParam(@RequestParam("bookName") String bookName,Model model) {
+		model.addAttribute("msg", "The input value is " + bookName.toUpperCase());
+		return "showParams";
+	}
+	
 	@RequestMapping("/showBookName")
 	public String showBookName() {
 		return "showInfo";

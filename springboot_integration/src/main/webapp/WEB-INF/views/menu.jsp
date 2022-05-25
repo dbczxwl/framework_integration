@@ -19,5 +19,7 @@
 	<br/>
 	<h5>a标签 href中的值为浏览器访问路径，而WEB-INF/views/webForm.jsp为服务器路径</h5>
 	<a href="/WEB-INF/views/webForm.jsp">跳转表单页-服务器路径（这样写是错误的）</a>
+	<br/><br/>
+	<a href="/boot/testdb">TESTDB</a>
 </body>
 </html>

@@ -7,5 +7,6 @@
 <body>
 	<h1>Form transfer param</h1>
 	<p>param is "${param.bookName}"</p>
+	<p>msg is "${msg}"</p>
 </body>
 </html>
