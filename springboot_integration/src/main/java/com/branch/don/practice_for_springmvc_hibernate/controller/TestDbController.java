@@ -153,9 +153,10 @@ public class TestDbController {
 
 	private Customer hibernateQueryTest() {
 		Session session = sessionFactory.getCurrentSession();
-		List<Customer> customerList = session.createQuery("from Customer").list();
+		// <?>代表任意java类型，<? extends T> 表示传入数据值需要是T类型或T的子类，<? suprt T>表示传入数据值需要是T类型或T的超类。
+		List<?> customerList = session.createQuery("from Customer").list();
 		if (customerList.size() != 0) {
-			return customerList.get(customerList.size() - 1);
+			return (Customer) customerList.get(customerList.size() - 1);
 		} else {
 			return null;
 		}
