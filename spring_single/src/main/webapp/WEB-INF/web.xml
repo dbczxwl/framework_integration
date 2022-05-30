@@ -13,4 +13,7 @@
 		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
 	
+	<!-- 如果不做配置，在启动服务器的时候不会加载xml配置文件，需要在代码中手动指定 -->
+	<!-- spring配置文件路径contextConfigLocation默认值为/WEB-INF/applicationContext.xml -->
+	
 </web-app>
