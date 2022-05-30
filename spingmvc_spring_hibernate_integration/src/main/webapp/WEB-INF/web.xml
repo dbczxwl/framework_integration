@@ -17,9 +17,24 @@
 	</welcome-file-list>
 
 	<!-- 1. 配置Servlet类 -->
+	<!-- context-param为全局参数 -->
+	<context-param>
+		<!-- 如果context-param未配置contextConfigLocation, 则默认取/WEB-INF/applicationContext.xml -->
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+
+	<!-- 2. 配置Servlet类 -->
+	<listener>
+		<!-- 父容器需要先于子容器加载 -->
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- 3. 配置Servlet类 -->
 	<servlet>
 		<servlet-name>dispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- init-param为局部参数 -->
 		<init-param>
 			<!-- 如果DispatcherServlet未配置contextConfigLocation, 默认读取/WEB-INF/${dispatcherServletName}-servlet.xml -->
 			<param-name>contextConfigLocation</param-name>
@@ -32,7 +47,7 @@
 
 	</servlet>
 
-	<!-- 2. 设置Servlet拦截路径 -->
+	<!-- 4. 设置Servlet拦截路径 -->
 	<servlet-mapping>
 		<servlet-name>dispatcherServlet</servlet-name>
 		<!-- 处理全部请求 -->
