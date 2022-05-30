@@ -20,6 +20,7 @@
 	<servlet>
 		<servlet-name>dispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 如果DispatcherServlet未配置contextConfigLocation, 默认读取/WEB-INF/${dispatcherServletName}-servlet.xml -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<!-- classpath = /WEB-INF/classes,存放编译后的class文件和资源文件夹中的内容副本 -->
