@@ -8,7 +8,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.branch.don</groupId>
-	<artifactId>practice_for_springmvc_hibernate</artifactId>
+	<artifactId>springboot_integration</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>practice_for_spring</name>
 	<description>Demo project for Spring Boot</description>
