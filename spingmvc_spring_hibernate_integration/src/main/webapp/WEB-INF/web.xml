@@ -4,8 +4,6 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 		http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"	id="WebApp_ID" version="4.0">
 
-	<!-- First XML -->
-
 	<display-name>spingmvc_single</display-name>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
