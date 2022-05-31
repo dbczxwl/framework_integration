@@ -14,21 +14,20 @@
 		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
 
-	<!-- 1. 配置Servlet类 -->
+	<!-- web项目整合Spring,Springmvc,Hibernate第二步1：装配Spring配置文件（父容器），通过web.xml的监听器配置实现 -->
 	<!-- context-param为全局参数 -->
 	<context-param>
 		<!-- 如果context-param未配置contextConfigLocation, 则默认取/WEB-INF/applicationContext.xml -->
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
-
-	<!-- 2. 配置Servlet类 -->
 	<listener>
-		<!-- 父容器需要先于子容器加载 -->
+		<!-- 父容器需要先于子容器加载，所以配置在启动tomcat时就通过Listener加载 -->
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- 3. 配置Servlet类 -->
+	<!-- web项目整合Spring,Springmvc,Hibernate第二步2：装配Springmvc配置文件（子容器），通过web.xml的监听器配置实现 -->
+	<!-- 配置Servlet类 -->
 	<servlet>
 		<servlet-name>dispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -45,7 +44,7 @@
 
 	</servlet>
 
-	<!-- 4. 设置Servlet拦截路径 -->
+	<!-- 设置Servlet拦截路径 -->
 	<servlet-mapping>
 		<servlet-name>dispatcherServlet</servlet-name>
 		<!-- 处理全部请求 -->
