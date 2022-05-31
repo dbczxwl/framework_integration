@@ -4,8 +4,6 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 		http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"	id="WebApp_ID" version="4.0">
 
-	<!-- First XML -->
-
 	<display-name>spingmvc_single</display-name>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
@@ -15,6 +13,8 @@
 		<welcome-file>default.jsp</welcome-file>
 		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
+
+	<!-- web项目整合Spring第二步：注入Springmvc配置文件第一种方法，通过web.xml的Servlet配置实现 -->
 
 	<!-- 1. 配置Servlet类 -->
 	<servlet>

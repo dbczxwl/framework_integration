@@ -13,7 +13,7 @@
 		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
 	
-	<!-- web项目整合Spring第二步：装配Spring配置文件（BeanFactory）的第一种方法，通过web.xml配置实现 -->
+	<!-- web项目整合Spring第二步：装配Spring配置文件（BeanFactory）的第一种方法，通过web.xml的监听器配置实现 -->
 	<!-- 如果context-param未配置contextConfigLocation, 则默认取/WEB-INF/applicationContext.xml -->
 	<!-- 如果不做配置，在启动服务器的时候不会装配Spring配置文件，需要在相应的注解/代码中指定（可能会在用到时才装配） -->
 <!--  	<context-param> -->
