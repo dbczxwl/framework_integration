@@ -7,7 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-// spring配置,xml文件的加载
+// web项目整合Spring第二步：装配Spring配置文件（BeanFactory）的第二种方法，通过注解实现
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 // spring配置,javaConfig配置类的加载
 // @ContextConfiguration(classes = SpringConfiguration.class)

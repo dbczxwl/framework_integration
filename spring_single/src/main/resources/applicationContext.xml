@@ -12,9 +12,10 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
-
 	<!-- 命名空间说明 - beans:定义一个包含bean的范围; xsi:通过schemaLocation属性定位各命名空间的规约xsd文件位置; 
 		context:用与引入外部文件,properties,通过注解上面的bean等 ; aop/tx:配合来完成声明式事务 -->
+		
+	<!-- web项目整合Spring第一步：配置Spring配置文件（BeanFactory）中的配置选项和Beans -->
 
 	<!-- 开启包扫描 -->
 	<context:component-scan base-package="com.branch.don">
