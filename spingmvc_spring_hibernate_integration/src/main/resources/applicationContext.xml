@@ -16,12 +16,47 @@
 	<!-- 命名空间说明 - beans:定义一个包含bean的范围; xsi:通过schemaLocation属性定位各命名空间的规约xsd文件位置; 
 		context:用与引入外部文件,properties,通过注解上面的bean等 ; aop/tx:配合来完成声明式事务 -->
 	
-	<!-- web项目整合Spring,Springmvc,Hibernate第一步1：配置Spring配置文件 -->
+	<!-- web项目整合Spring,Springmvc,Hibernate第一步1：配置Spring配置文件，此为父容器 -->
 	
 	<!-- 开启包扫描,排除Controller -->
 	<context:component-scan base-package="com.branch.don">
 		<!-- 在spring配置文件的包扫描配置中忽略对Controller的扫描，Controller的扫描交给Spring MVC -->
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
+
+	<!-- web项目整合Spring,Springmvc,Hibernate第一步2：添加hibernate配置 -->
+
+    <!-- 添加hibernate配置1: Define Database DataSource / connection pool -->
+	<bean id="myDataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/crm_demo?characterEncoding=utf-8&useSSL=false" />
+        <property name="user" value="root" />
+        <property name="password" value="root" /> 
+
+        <!-- these are connection pool properties for Hikari -->
+		<property name="initialPoolSize" value="5"/>
+        <property name="minPoolSize" value="5" />
+        <property name="maxPoolSize" value="20" />
+        <property name="maxIdleTime" value="30000" />
+	</bean>  
+	
+    <!-- 添加hibernate配置2: Setup Hibernate session factory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="packagesToScan" value="com.branch.don.entity" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>	  
+
+    <!-- 添加hibernate配置3: Setup Hibernate transaction manager -->
+	<bean id="myTransactionManager"	class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+    
+    <!-- 添加hibernate配置4: Enable configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven transaction-manager="myTransactionManager" />
 
 </beans>
