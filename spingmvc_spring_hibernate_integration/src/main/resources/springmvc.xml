@@ -24,7 +24,7 @@
 	<!-- 配置选项3:配置Spring MVC的视图解析器 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     	<!-- 目录 -->
-        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="prefix" value="/WEB-INF/views/"/>
         <!-- 后缀名 -->
         <property name="suffix" value=".jsp"/>
     </bean>

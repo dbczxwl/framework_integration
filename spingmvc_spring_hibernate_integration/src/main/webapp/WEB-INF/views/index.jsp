@@ -6,6 +6,6 @@
 </head>
 <body>
 	<h1>Welcome Everybody!</h1>
-	<a href="/springmvc_single/toMenu">跳转菜单页</a>
+	<a href="/spingmvc_spring_hibernate_integration/toMenu">跳转菜单页</a>
 </body>
 </html>
