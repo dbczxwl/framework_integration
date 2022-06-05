@@ -28,6 +28,7 @@
 
     <!-- 添加hibernate配置1: Define Database DataSource / connection pool -->
 	<bean id="myDataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+<!-- 		<property name="driverClass" value="com.mysql.cj.jdbc.Driver" /> -->
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/crm_demo?characterEncoding=utf-8&amp;useSSL=false" />
         <property name="username" value="root" />
         <property name="password" value="root" /> 

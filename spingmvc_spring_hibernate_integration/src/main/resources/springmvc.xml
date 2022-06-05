@@ -13,8 +13,8 @@
 	<!-- web项目整合Spring,Springmvc,Hibernate第一步3：配置Springmvc配置选项 -->
 
 	<!-- 配置选项1:开启子容器包扫描 -->
+	<!-- 只扫描Controller,这里一定要配合use-default-filters="false"使用,此值默认true时全扫描include-filter不生效 -->
     <context:component-scan base-package="com.branch.don" use-default-filters="false">
-    	<!-- 只扫描Controller,这里一定要配合use-default-filters="false"使用,此值默认true时全扫描include-filter不生效 -->
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
