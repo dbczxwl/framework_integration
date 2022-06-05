@@ -16,6 +16,8 @@
 	<!-- 命名空间说明 - beans:定义一个包含bean的范围; xsi:通过schemaLocation属性定位各命名空间的规约xsd文件位置; 
 		context:用与引入外部文件,properties,通过注解上面的bean等 ; aop/tx:配合来完成声明式事务 -->
 	
+	<context:property-placeholder location="classpath:dbConfig.properties"/> 
+	
 	<!-- web项目整合Spring,Springmvc,Hibernate第一步1：配置Spring配置文件，此为父容器 -->
 	
 	<!-- 开启父容器包扫描,排除Controller -->
@@ -32,8 +34,8 @@
 		<!-- 下方的参数不需要照着网上找，在HikariDataSource继承的HikariConfig类中找到setter/getter方法，确定property的name属性 -->
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/crm_demo?characterEncoding=utf-8&amp;useSSL=false" />
-        <property name="username" value="root" />
-        <property name="password" value="root" /> 
+        <property name="username" value="${db.username}" />
+        <property name="password" value="${db.password}" /> 
 
         <!-- these are connection pool properties for Hikari -->
         <property name="minimumIdle" value="5" />
@@ -45,11 +47,19 @@
     <!-- 想查看有哪些属性可以配置可以直接查看LocalSessionFactoryBean类中的getter/setter方法 -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
+		
+		<!-- 配置持久化时，类的范围 -->
 		<property name="packagesToScan">
 			<list>
 				<value>com.branch.don.entity</value>
 			</list>
 		</property>
+
+		<!-- hibernate默认的隐士策略，其中包含了把列名的大写自动变成小写并加上下划线 -->
+<!-- 		<property name="implicitNamingStrategy"> -->
+<!-- 			<bean class="org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl" /> -->
+<!-- 		</property> -->
+		
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
