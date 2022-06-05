@@ -16,8 +16,9 @@ public class NavigatorController {
 	@RequestMapping("/toMenu")
 	public String showMenu() {
 		System.out.println("Go to the meun page.");
-		@SuppressWarnings("unused")
 		List<?> customerList = customerService.getService();
+		System.out.println(customerList);
+		
 		return "menu";
 	}
 

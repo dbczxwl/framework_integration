@@ -28,7 +28,9 @@
 
     <!-- 添加hibernate配置1: Define Database DataSource / connection pool -->
 	<bean id="myDataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
-<!-- 		<property name="driverClass" value="com.mysql.cj.jdbc.Driver" /> -->
+		<!-- 这里的driver配置不能省略（这里不是jdbc高版本进行配置），而是通过HikariDataSource注入LocalSessionFactoryBean初始化 -->
+		<!-- 下方的参数不需要照着网上找，在HikariDataSource继承的HikariConfig类中找到setter/getter方法，确定property的name属性 -->
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/crm_demo?characterEncoding=utf-8&amp;useSSL=false" />
         <property name="username" value="root" />
         <property name="password" value="root" /> 
@@ -40,13 +42,25 @@
 	</bean>  
 	
     <!-- 添加hibernate配置2: Setup Hibernate session factory -->
+    <!-- 想查看有哪些属性可以配置可以直接查看LocalSessionFactoryBean类中的getter/setter方法 -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
-		<property name="packagesToScan" value="com.branch.don.entity" />
+		<property name="packagesToScan">
+			<list>
+				<value>com.branch.don.entity</value>
+			</list>
+		</property>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<!-- 手工管理事务,步骤1 -->
+				<!-- <prop key="hibernate.current_session_context_class">thread</prop> -->
+				<!-- 将事务交给Spring管理,步骤1 -->
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</prop>
+				<!-- 配置hibernate的自动建表策略策略 -->
+				<prop key="hbm2ddl.auto">update</prop>
 			</props>
 		</property>
 	</bean>	  

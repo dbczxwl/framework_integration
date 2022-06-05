@@ -15,9 +15,11 @@ public class Customer {
 	Integer id;
 
 	@Column
+	// @Column(name="first_name")
 	String firstName;
 
 	@Column
+	// @Column(name="last_name")
 	String lastName;
 
 	@Column
