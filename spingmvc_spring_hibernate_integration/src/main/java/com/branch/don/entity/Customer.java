@@ -6,24 +6,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table
+// 类名和表明相同@Table可以省略
+@Table(name = "customer")
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
 
+	// 属性名和列名相同@Column可以省略
+	// 在springboot下jpa默认会将属性的驼峰命名自动匹配表列名的下划线分割，而单独的hibernate此种情况下需要用Colum显示说明
 	@Column(name = "first_name")
-	// @Column
 	String firstName;
 
 	@Column(name = "last_name")
-	// @Column
 	String lastName;
 
 	@Column
 	String email;
+
+	// @Transient注解的属性不会被持久化
+	@Transient
+	String exceptString;
 
 	public Customer() {
 
@@ -65,6 +71,14 @@ public class Customer {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getExceptString() {
+		return exceptString;
+	}
+
+	public void setExceptString(String exceptString) {
+		this.exceptString = exceptString;
 	}
 
 	@Override
