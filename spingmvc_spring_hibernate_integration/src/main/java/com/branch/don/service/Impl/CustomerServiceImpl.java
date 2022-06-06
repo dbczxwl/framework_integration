@@ -20,10 +20,10 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<?> getService() {
 		System.out.println("Give some service");
 		Session session = sessionFactory.getCurrentSession();
-		// session.beginTransaction();// 手工管理事务
+		// session.beginTransaction();// 手动管理事务
 		// <?>代表任意java类型，<? extends T> 表示传入数据值需要是T类型或T的子类，<? suprt T>表示传入数据值需要是T类型或T的超类。
 		List<?> customerList = session.createQuery("from Customer").getResultList();
-		// session.getTransaction().commit();// 手工管理事务
+		// session.getTransaction().commit();// 手动管理事务
 
 		return customerList;
 	}
