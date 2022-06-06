@@ -16,6 +16,7 @@
 	<!-- 命名空间说明 - beans:定义一个包含bean的范围; xsi:通过schemaLocation属性定位各命名空间的规约xsd文件位置; 
 		context:用与引入外部文件,properties,通过注解上面的bean等 ; aop/tx:配合来完成声明式事务 -->
 	
+	<!-- 读取.properties文件 -->
 	<context:property-placeholder location="classpath:dbConfig.properties"/> 
 	
 	<!-- web项目整合Spring,Springmvc,Hibernate第一步1：配置Spring配置文件，此为父容器 -->
@@ -60,10 +61,15 @@
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
-				<!-- 手工管理事务,步骤1 -->
+				<!-- 配置current_session_context_class后使用getCurrentSession方法获取当前session,从而不需要手动管理session的创建和销毁 -->
+				<!-- 值jta全称org.hibernate.context.internal.JTASessionContext - 当前session根据JTA来跟踪和界定,需手动管理事务 -->
+				<!-- 值thread全称org.hibernate.context.internal.ThreadLocalSessionContext - 当前session通过当前执行的线程来跟踪和界定,需手动管理事务 -->
 				<!-- <prop key="hibernate.current_session_context_class">thread</prop> -->
-				<!-- 将事务交给Spring管理,步骤1 -->
-				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</prop>
+				
+				<!-- 将session交给Spring管理（使用SpringSession）,Spring管理事务中current session是绑定下springsessioncontext中的 -->
+				<!-- 在使用LocalSessionFactoryBean时默认值为SpringSessionContext,所以可以省略不写 -->
+				<!-- <prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</prop> -->
+				
 				<!-- 配置hibernate的自动建表策略策略 -->
 				<prop key="hbm2ddl.auto">update</prop>
 			</props>
@@ -76,6 +82,7 @@
 	</bean>
     
     <!-- 添加hibernate配置4: Enable configuration of transactional behavior based on annotations -->
+    <!-- 将事务交给Spring管理,步骤1,开启对声明式事务的支持 -->
 	<tx:annotation-driven transaction-manager="myTransactionManager" />
 
 </beans>
