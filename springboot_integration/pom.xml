@@ -60,6 +60,7 @@
 
 	<build>
 		<plugins>
+			<!-- 此插件的作用是执行package命令时，将springboot项目打成可执行的jar包 -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
