@@ -88,6 +88,7 @@ public class TestDbController {
 	}
 
 	private void dataSourceTest() throws SQLException {
+		System.out.println(dataSource.getClass().getName());
 		Connection connection = dataSource.getConnection();
 		System.out.println("默认数据源为：" + dataSource.getClass());
 		Statement st2 = connection.createStatement();
